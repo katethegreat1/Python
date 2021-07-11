@@ -1,4 +1,4 @@
-风变编程Python学霸笔记线上阅览室
+学霸笔记线上阅览室
 https://www.yuque.com/wangruoxuan-lx8yt/gg4q7o
 
 隐藏攻略- HW answers
