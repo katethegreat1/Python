@@ -1,12 +1,69 @@
 #第4课 列表、字典、元组
 
+# Tips!!! Python错误：SyntaxError: unexpected EOF while parsing
+# 这个会直接导致后面的code出现Syntax errors!!!!!!!
+
+#这是因为整体复制过去运行而产生的错误；解决方案如下：
+
+#方法一：先将第一行复制，敲一下回车，再将剩下的部分复制过去，运行；
+#方法二：Ctrl+N，新建一个，这时直接将代码复制进来，就不会产生这个问题了；
+# 直接在IDLE中编译，是每行都要回车的。如果是单独的语句，只能是一行一行的编辑。
+
+print('''Built-in Data Types
+In programming, data type is an important concept.
+Variables can store data of different types, and different types can do different things.
+#Python has the following data types built-in by default, in these categories:
+
+Text Type:	str
+Numeric Types:	int, float, complex
+Sequence Types:	list, tuple, range
+Mapping Type:	dict
+Set Types:	set, frozenset
+Boolean Type:	bool
+Binary Types:	bytes, bytearray, memoryview''')
+
+#4 built-in data types
+
+# Tuple:  ordered, unchangeable, and allow duplicate values.
+# list: List items are ordered, changeable, and allow duplicate values.
+# Dict: A dictionary is a collection which is ordered*, changeable and does not allow duplicates.
+       #* As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+# set:  Set items are unordered, unchangeable, and do not allow duplicate values.
+
 #这一关，我们就会接触两种新的数据类型——列表和字典，
 # 你会发现，它们比我们学过的“整数、浮点数、字符串”更加高级，更有“包容性”。
+
+# 元组
+#元组(tuple)和列表（list）区别
+#list 是可变的对象，元组 tuple 是不可变的对象！
+#由于 tuple 不可变，所以使用 tuple 可以使代码更安全！
+
+# Tuple 是有顺序的，和list 一样。
+
+#Example
+#One item tuple, remember the comma:
+
+thistuple = ("apple",)
+print(type(thistuple))
+# <class 'tuple'>
+
+#NOT a tuple
+thistuple = ("apple")
+print(type(thistuple))
+#<class 'str'>
+
+# 提取items: offset/slice
+
+tuple = ('Kate', 18, 1.7)
+print(tuple[1])   #18
+print(tuple[-2])   #18
+print(tuple[1:2])   #(18,)
+
 
 #一个列表需要用中括号[ ]把里面的各种数据框起来，里面的每一个数据叫作“元素”。每个元素之间都要用英文逗号隔开。
 #现在请你创建一个列表名为list1的列表，列表里有三个元素：'小明'、18、1.70，并将其打印出来：
 
-list=['小明',18,1.70]      # not list=([***])
+list=['小明',18,1.70]   # not list=([***])
 print(list)
 
 #知识点1：列表很包容，各种类型的数据（整数/浮点数/字符串）无所不能包。
@@ -204,3 +261,73 @@ scores = [
     ]
 print(scores[1]['小强'])
 #先定位到列表偏移量为1的元素，即第二个字典，再取出字典里键为'小强'对应的值，即99。
+
+#  !!!!!HW1
+
+scores = {
+    '第一组':{'小明':{'语文':[94,96],'数学':[88,96]},'小红':{'语文':[89,93],'数学':[91,89]}},
+    '第二组':{'小强':{'语文':[92,95],'数学':[90,91]},'小兰':{'语文':[91,95],'数学':[86,98]}}
+    }
+
+# 要求一：
+score_chinese = scores['第二组']['小强']['语文'][1]
+score_math = scores['第二组']['小强']['数学'][1]
+print('小强期末两个学科的成绩如下：语文'+str(score_chinese)+'分，数学'+str(score_math)+'分。')
+# 小强期末两个学科的成绩如下：语文95分，数学91分。
+
+print(str(scores['第二组']['小强']['语文'][1])+',' +str(scores['第二组']['小强']['数学'][1]))
+
+# 要求二：
+scores['第一组']['小红']['数学'][1] = 92
+print(scores['第一组']['小红']['数学'])
+# [91, 92]
+
+# 要求三：
+score_xiaolan = scores['第二组']['小兰']
+scores['第二组']['小蓝'] = score_xiaolan	# 获取小兰的成绩赋值给小蓝
+del scores['第二组']['小兰']	# 删除小兰
+print(scores['第二组'])
+# {'小强': {'语文': [92, 95], '数学': [90, 91]}, '小蓝': {'语文': [91, 95], '数学': [86, 98]}}
+
+print('''课后练习2：君子爱‘数’取之有道
+
+数据提取-1 - 请你通过所学知识，把列表list1中的'love'取出来，并打印出来。
+数据提取-2 - 请你通过所学知识，把字典dict1中的'love'取出来，并打印出来。
+拓展知识：元组
+下面，介绍一种新的数据类型：元组（tuple）。 可以看到：元组和表格很相似，不过，它是用小括号来包的。
+元组和列表都是序列,提取的方式也是偏移量，如 tuple1[1]、tuple1[1:]。另外，元组也支持任意的嵌套。
+请你根据以上提供的信息，将tuple1中的A和list2中的D打印出来。看到了，理解了，运用了，就能够掌握了。''')
+
+# 第一题代码
+list1 = [{'嫉妒':'envy'},{'恨':'hatred'},{'爱':'love'}]
+
+print(list1[2]['爱'])
+print(list1[-1]['爱'])
+
+# 第二题代码
+dict1 = {1:['cake','scone','puff'],2:['London','Bristol','Bath'],3:['love','hatred','envy']}
+print(dict1[3][0])
+print(dict1[3][-3])
+
+# 第三题代码
+tuple1 = ('A','B')
+list2 = [('A','B'),('C','D'),('E','F')]
+
+print(tuple1[0])
+print(list2[1][1])
+
+
+# 课后练习3：找到那只狼
+
+townee = [
+    {'海底王国':['小美人鱼''海之王''小美人鱼的祖母''五位姐姐'],'上层世界':['王子','邻国公主']},
+    '丑小鸭','坚定的锡兵','睡美人','青蛙王子',
+    [{'主角':'小红帽','配角1':'外婆','配角2':'猎人'},{'反面角色':'狼'}]
+    ]
+
+print(len(townee))  #6
+
+#print(townee[6]['反面角色'])   # IndexError: list index out of range
+#print(townee[5]['反面角色'])     #wrong
+
+print (townee[5][1]['反面角色'])
