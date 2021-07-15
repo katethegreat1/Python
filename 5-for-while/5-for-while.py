@@ -1,4 +1,4 @@
-#   5
+#   第5课  For 循环 & While 循环
 
 for i in [1, 2, 3, 4, 5]:
     print(i)
