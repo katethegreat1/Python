@@ -325,3 +325,198 @@ elif enemy_victory > player_victory:
     print('\n【最终结果：你输了！】')
 else:
     print('\n【最终结果：平局！】')
+
+print('''练习目标：
+我们会在项目1代码的基础上，添加一个新功能，同时练习循环和判断的知识。
+
+练习要求：
+新功能是：每盘（3局）游戏结束后，游戏会问我们是否要继续游戏，再加一盘。
+我们可以选择再来一盘，也可以选择退出游戏。
+
+进一步拆解和分析
+
+方案1：while True+break
+开启一个无限循环，设定跳出条件。
+
+方案2：while 变量名+变量名的布尔值判断
+在开头设某变量的布尔值为True，input后开启判断变量的布尔值是否改变。
+
+升级项目1
+
+请你选用上面方案中的一种，为项目1增加“再来一局”的功能。
+
+参考代码用了方案1。当然，方案2也是可以的——只要成功添加了新功能。''')
+
+#方法一
+import time
+import random
+while True:
+    player_victory = 0
+    enemy_victory = 0
+    for i in range(1,4):
+        time.sleep(1.5)
+        print('  \n——————现在是第 %s 局——————' % i)
+        player_life = random.randint(100,150)
+        player_attack = random.randint(30,50)
+        enemy_life = random.randint(100,150)
+        enemy_attack = random.randint(30,50)
+        print('【玩家】\n血量：%s\n攻击：%s' % (player_life,player_attack))
+        print('------------------------')
+        time.sleep(1)
+        print('【敌人】\n血量：%s\n攻击：%s' % (enemy_life,enemy_attack))
+        print('-----------------------')
+        time.sleep(1)
+        while player_life > 0 and enemy_life > 0:
+            player_life = player_life - enemy_attack
+            enemy_life = enemy_life - player_attack
+            print('你发起了攻击，【玩家】剩余血量%s' % player_life)
+            print('敌人向你发起了攻击，【敌人】的血量剩余%s' % enemy_life)
+            print('-----------------------')
+            time.sleep(1.2)
+        if player_life > 0 and enemy_life <= 0:
+            player_victory += 1
+            print('敌人死翘翘了，你赢了！')
+        elif player_life <= 0 and enemy_life > 0:
+            enemy_victory += 1
+            print('悲催，敌人把你干掉了！')
+        else:
+            print('哎呀，你和敌人同归于尽了！')
+    if player_victory > enemy_victory :
+        time.sleep(1)
+        print('\n【最终结果：你赢了！】')
+    elif enemy_victory > player_victory:
+        print('\n【最终结果：你输了！】')
+    else:
+        print('\n【最终结果：平局！】')
+    a1 = input('要继续游戏吗，请输入n退出，输入其他继续：')
+    if a1 == 'n':
+        break
+
+ #方法二
+import time
+import random
+
+player_victory = 0
+enemy_victory = 0
+again = True
+while again:
+    for i in range(1,4):
+        time.sleep(1.5)
+        print('  \n——————现在是第 %s 局——————' % i)
+        player_life = random.randint(100,150)
+        player_attack = random.randint(30,50)
+        enemy_life = random.randint(100,150)
+        enemy_attack = random.randint(30,50)
+
+        print('【玩家】\n血量：%s\n攻击：%s' % (player_life,player_attack))
+        print('------------------------')
+        time.sleep(1)
+        print('【敌人】\n血量：%s\n攻击：%s' % (enemy_life,enemy_attack))
+        print('-----------------------')
+        time.sleep(1)
+
+        while player_life > 0 and enemy_life > 0:
+            player_life = player_life - enemy_attack
+            enemy_life = enemy_life - player_attack
+            print('你发起了攻击，【玩家】剩余血量%s' % player_life)
+            print('敌人向你发起了攻击，【敌人】的血量剩余%s' % enemy_life)
+            print('-----------------------')
+            time.sleep(1.2)
+
+        if player_life > 0 and enemy_life <= 0:
+            player_victory += 1
+            print('敌人死翘翘了，你赢了！')
+        elif player_life <= 0 and enemy_life > 0:
+            enemy_victory += 1
+            print('悲催，敌人把你干掉了！')
+        else:
+            print('哎呀，你和敌人同归于尽了！')
+
+    if player_victory > enemy_victory :
+        time.sleep(1)
+        print('\n【最终结果：你赢了！】')
+    elif enemy_victory > player_victory:
+        print('\n【最终结果：你输了！】')
+    else:
+        print('\n【最终结果：平局！】')
+
+    a1 = input('要继续游戏吗，请输入n退出，输入其他继续：')  # 在 while True 循环中设置跳出条件。
+    if a1 == 'n':
+        again = False
+    else:
+        again = True
+
+print('''练习目标
+在这个练习，我们会学会一种新的“格式化字符串”的方法：format()函数。
+
+练习要求
+在项目1的末尾，我们学会了一种简化代码的方式：格式化字符串。
+不过，还有一种更强大的方法，下面我们会先学习，然后再练习。
+
+
+!!! 学习format()函数
+
+format()函数是从 Python2.6 起新增的一种格式化字符串的函数，功能比课堂上提到的方式更强大。
+format()函数用来占位的是大括号{}，不用区分类型码（%+类型码）。
+具体的语法是：'str.format()'，而不是课堂上提到的'str % ()'。
+而且，它对后面数据的引用更灵活，不限次数，也可指定对应关系。
+看完左侧的代码、结果和注释，你就懂上面几句话的意思了。
+
+
+运用format()函数
+
+将代码中字符串格式化的代码改成format()函数的方法，改完后运行一下，检验是否正确。
+
+一共有5行代码需要改，你都找到了吗？
+对了，format()在数字格式化的方面提供了很多种选择，有兴趣的可以查一下。''')
+
+import time
+import random
+
+player_victory = 0
+enemy_victory = 0
+
+while True:
+    for i in range(1,4):
+        time.sleep(1.5)
+        print('  \n——————现在是第 {} 局——————'.format(i))
+        player_life = random.randint(100,150)
+        player_attack = random.randint(30,50)
+        enemy_life = random.randint(100,150)
+        enemy_attack = random.randint(30,50)
+
+        print('【玩家】\n血量：{}\n攻击：{}'.format(player_life,player_attack))
+        print('------------------------')
+        time.sleep(1)
+        print('【敌人】\n血量：{}\n攻击：{}'.format(enemy_life,enemy_attack))
+        print('-----------------------')
+        time.sleep(1)
+
+        while player_life > 0 and enemy_life > 0:
+            player_life = player_life - enemy_attack
+            enemy_life = enemy_life - player_attack
+            print('敌人发起了攻击，【玩家】剩余血量{}'.format(player_life))
+            print('你发起了攻击，【敌人】的血量剩余{}'.format(enemy_life))
+            print('-----------------------')
+            time.sleep(1.2)
+
+        if player_life > 0 and enemy_life <= 0:
+            player_victory += 1
+            print('敌人死翘翘了，你赢了！')
+        elif player_life <= 0 and enemy_life > 0:
+            enemy_victory += 1
+            print('悲催，敌人把你干掉了！')
+        else:
+            print('哎呀，你和敌人同归于尽了！')
+
+    if player_victory > enemy_victory :
+        time.sleep(1)
+        print('\n【最终结果：你赢了！】')
+    elif enemy_victory > player_victory:
+        print('\n【最终结果：你输了！】')
+    else:
+        print('\n【最终结果：平局！】')
+
+    a1 = input('要继续游戏吗，请输入n退出，输入其他继续：')
+    if a1 == 'n':
+        break
