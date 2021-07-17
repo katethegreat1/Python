@@ -286,3 +286,14 @@ double click pip
 search numpy from the top bar
 click on numpy
 click install package button''')
+
+# Research for NumPy
+
+# 用阵列代替列表处理资料
+# 适合处理多维度的资料
+# 下面根据 list 建立 ndarray 物件  # nd = 多维度
+
+import numpy as np
+ndarr = np.array([3,4,-5]) # 把物件中的资料打印出来
+print(ndarr)
+print(ndarr.size) # 取得资料的数量  #利用size属性
