@@ -1,3 +1,3 @@
 # Python
 
-This is my Python study notes. :)
+This is my Python study notes. 
